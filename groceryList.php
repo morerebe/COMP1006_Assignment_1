@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Your Shopping List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <h1>Grocery Shopping List</h1>
@@ -19,7 +20,7 @@ $musicians = $cmd->fetchAll();
 
 // start table
 
-echo '<table><thead><th>Item</th><th>Category</th><th>Quantity</th><th>Price</th><th>Notes</th></thead>';
+echo '<table class="table table-striped"><thead class="thead-dark"><th>Item</th><th>Category</th><th>Quantity</th><th>Price</th><th>Notes</th></thead>';
 
 // loop through data and display results
 
