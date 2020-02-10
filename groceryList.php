@@ -17,7 +17,7 @@ $db = new PDO("mysql:host=172.31.22.43;dbname=Rebecca100157685", "Rebecca1001576
 $sql = "SELECT * FROM groceryList";
 $cmd = $db->prepare($sql);
 $cmd->execute();
-$musicians = $cmd->fetchAll();
+$groceryList= $cmd->fetchAll();
 // set up and execute query ^
 
 // start table
