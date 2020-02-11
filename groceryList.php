@@ -11,8 +11,11 @@
 <p>Have fun shopping!</p>
 <?php
 
-$db = new PDO("mysql:host=172.31.22.43;dbname=Rebecca100157685", "Rebecca100157685","TOqN7o1T_n"); // connect to the DB
+$servername = "172.31.22.43";
+$username = "Rebecca100157685";
+$password = "TOqN7o1T_n";
 
+$db = new PDO("mysql:host=$servername;dbname=Rebecca100157685", $username, $password); // connect to the DB
 
 $sql = "SELECT * FROM groceryList";
 $cmd = $db->prepare($sql);
@@ -27,14 +30,14 @@ echo '<table class="table table-striped"><thead class="thead-dark"><th>Item</th>
 // loop through data and display results
 
 foreach ($groceryList as $value) {
-    echo '<tr><td>' . $value['item'] . '</td>
-            <td>' . $value['categories'] . '</td>
-            <td>' . $value['quantity'] . '</td>
-            <td>' . $value['price'] . '</td>
-            <td>' . $value['notes'] . '</td></tr>';
+    echo '<tr><td>'.$value['item'].'</td>
+            <td>'.$value['categories'].'</td>
+            <td>'.$value['quantity'].'</td>
+            <td>'.$value['price'].'</td>
+            <td>'.$value['notes'].'</td></tr>';
 }
 
-echo '</table>';
+echo "</table>";
 ?>
 
 </body>
