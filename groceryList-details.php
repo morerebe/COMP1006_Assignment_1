@@ -13,34 +13,42 @@
     <div class="form-row">
     <fieldset>
         <label for="item">Item: *</label>
-        <input class="form-group col-md-8" name="item" id="item" maxlength="100" required />
+        <input class="form-group col-md-8" name="item" id="item" maxlength="100" />
     </fieldset>
         <fieldset>
             <label for="categories">Categories:</label>
-            <select class="form-group col-md-6" name="categories" id="categories">
-                <option value="other">Other</option>
-                <option value="produce">Produce</option>
-                <option value="bread-bakery">Bread & Bakery</option>
-                <option value="dairy-eggs">Dairy & Eggs</option>
-                <option value="spice">Spices</option>
-                <option value="condiments">Condiments</option>
-                <option value="snacks">Snacks</option>
-                <option value="canned-food">Canned Food</option>
-                <option value="frozen-food">Frozen Food</option>
-                <option value="beverages">Beverages</option>
-                <option value="household">Household</option>
-                <option value="pets">Pets</option>
+            <select class="form-group col-md-7" name="categories" id="categories">
+                <option value="">Please select...</option>
+
+                <?php
+            $servername = "172.31.22.43";
+            $username = "Rebecca100157685";
+            $password = "TOqN7o1T_n";
+
+            $db = new PDO("mysql:host=$servername;dbname=Rebecca100157685", $username, $password); // connect to the DB
+
+            $sql = "SELECT name FROM categories";
+            $cmd = $db->prepare($sql);
+            $cmd->execute();
+            $categories  = $cmd->fetchAll();
+                foreach ($categories as $value) {
+
+                    echo '<option value ="'.$value['catergory_id'].'">' .$value['name'].'</option>';
+                }
+                $db = null;
+                    ?>
+
             </select>
         </fieldset>
     </div>
     <div class="form-row">
     <fieldset>
-        <label for="quantity">Quantity: *</label>
+        <label for="quantity">Quantity:</label>
         <input class="form-group col-md-8" name="quantity" type="number" id="quantity" min="1"/>
     </fieldset>
     <fieldset>
-        <label for="price">Price: *</label>
-        <input class="form-group col-md-8" name="price" data-type="currency" placeholder="3.00" id="price" required/>
+        <label for="price">Price:</label>
+        <input class="form-group col-md-8" name="price" data-type="currency" placeholder="3.00" id="price"/>
     </fieldset>
     </div>
     <fieldset>

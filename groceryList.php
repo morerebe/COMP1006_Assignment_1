@@ -18,13 +18,13 @@ $password = "TOqN7o1T_n";
 $db = new PDO("mysql:host=$servername;dbname=Rebecca100157685", $username, $password); // connect to the DB
 
 $sql = "SELECT * FROM groceryList";
+
 $cmd = $db->prepare($sql);
 $cmd->execute();
-$groceryList= $cmd->fetchAll();
+$groceryList = $cmd->fetchAll();
 // set up and execute query ^
 
 // start table
-
 echo '<table class="table table-striped"><thead class="thead-dark"><th>Item</th><th>Category</th><th>Quantity</th><th>Price</th><th>Notes</th></thead>';
 
 // loop through data and display results

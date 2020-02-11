@@ -26,10 +26,11 @@ if (empty($item)) {
     $valid = false;
 }
 
-if (empty($categories)) {
+/*if (empty($categories)) {
     echo 'Category is required <br/>';
     $valid = false;
 }
+*/
 if(!empty($quantity)) {
     if (!is_numeric($quantity)) {
         echo 'Quantity must be a number 0 or higher <br />';
@@ -39,12 +40,14 @@ if(!empty($quantity)) {
         echo 'Quantity must be a number 0 or higher <br />';
         $valid = false;
     }
-}
-if (empty($price)) {
-    echo 'Price is required <br/>';
-    $valid = false;
+    else
+        $quantity = null;
+
 }
 
+if (empty($price)) {
+   $price = null;
+}
 
 
 if ($valid == true) {
@@ -54,6 +57,7 @@ if ($valid == true) {
     $password = "TOqN7o1T_n";
 
     $db = new PDO("mysql:host=$servername;dbname=Rebecca100157685", $username, $password); // connect to the DB
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // set up insert
     $sql = "INSERT INTO groceryList (item, categories, quantity, price, notes) VALUES (:item, :categories, :quantity, :price, :notes)";
@@ -61,9 +65,9 @@ if ($valid == true) {
     $cmd = $db->prepare($sql);
 
     $cmd->bindParam(":item", $item, PDO::PARAM_STR, 50);
-    $cmd->bindParam(":categories", $categories, PDO::PARAM_STR);
+    $cmd->bindParam(":categories", $categories, PDO::PARAM_STR, 50);
     $cmd->bindParam(":quantity", $quantity, PDO::PARAM_INT);
-    $cmd->bindParam(":price", $price, PDO::PARAM_STR);
+    $cmd->bindParam(":price", $price, PDO::PARAM_STR,  10);
     $cmd->bindParam(":notes", $notes, PDO::PARAM_STR, 100);
     // bind the variables ^^
 
