@@ -11,9 +11,7 @@
 
 
 $item = $_POST["item"];
-
 $categories = $_POST["categories"];
-
 $quantity = $_POST["quantity"];
 $price = $_POST["price"];
 $notes = $_POST["notes"];
@@ -26,11 +24,6 @@ if (empty($item)) {
     $valid = false;
 }
 
-/*if (empty($categories)) {
-    echo 'Category is required <br/>';
-    $valid = false;
-}
-*/
 if(!empty($quantity)) {
     if (!is_numeric($quantity)) {
         echo 'Quantity must be a number 0 or higher <br />';
@@ -49,7 +42,6 @@ if (empty($price)) {
    $price = null;
 }
 
-
 if ($valid == true) {
 
     $servername = "172.31.22.43";
@@ -65,13 +57,13 @@ if ($valid == true) {
     $cmd = $db->prepare($sql);
 
     $cmd->bindParam(":item", $item, PDO::PARAM_STR, 50);
-    $cmd->bindParam(":categories", $categories, PDO::PARAM_STR, 50);
+    $cmd->bindParam(":categories", $categories, PDO::PARAM_STR, 600000);
     $cmd->bindParam(":quantity", $quantity, PDO::PARAM_INT);
     $cmd->bindParam(":price", $price, PDO::PARAM_STR,  10);
     $cmd->bindParam(":notes", $notes, PDO::PARAM_STR, 100);
     // bind the variables ^^
 
-    $cmd->execute(); // save to DB
+    $cmd->execute();
 
     echo "Grocery List Saved!";
 
@@ -81,4 +73,5 @@ if ($valid == true) {
 }
 
 ?>
-
+</body>
+</html>
